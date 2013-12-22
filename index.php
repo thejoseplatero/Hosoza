@@ -21,5 +21,13 @@ get_header(); ?>
 	    <?php while ( have_posts() ) : the_post(); ?>
 	    <?php the_content(); ?>
 	    <?php endwhile; ?>
+
+	    <?php while ( have_posts() ) : the_post() ?>
+	    <div class="entry-summary">
+	         <?php the_excerpt(); ?>
+	    </div><!-- .entry-summary -->
+	    <?php endwhile; ?>
     </div><!-- #content .site-content -->
+
+
 </div><!-- #primary .content-area -->
