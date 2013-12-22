@@ -64,3 +64,21 @@ function Shape_setup() {
 }
 endif; // Shape_setup
 add_action( 'after_setup_theme', 'Shape_setup' );
+
+/**
+ * Enqueue scripts and styles
+ */
+function shape_scripts() {
+    wp_enqueue_style( 'style', get_stylesheet_uri() );
+ 
+    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+        wp_enqueue_script( 'comment-reply' );
+    }
+ 
+    wp_enqueue_script( 'navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+ 
+    if ( is_singular() && wp_attachment_is_image() ) {
+        wp_enqueue_script( 'keyboard-image-navigation', get_template_directory_uri() . '/js/keyboard-image-navigation.js', array( 'jquery' ), '20120202' );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'shape_scripts' );
